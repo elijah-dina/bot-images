@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'Brittany Signature';
+    src: url('fonts/BrittanySignature.otf') format('opentype'),
+    url('fonts/BrittanySignature.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #fef9f6, #e7f0e8);
+    margin: 0;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 3em;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Brittany Signature', cursive;
+    font-size: 3rem;
+    color: #2e3a2e;
+    margin-bottom: 10px;
+}
+
+.subheading {
+    font-size: 1.2rem;
+    color: #2e3a2e;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+}
+
+input[type="file"] {
+    padding: 12px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background: #fafafa;
+    transition: border 0.3s;
+}
+
+input[type="file"]:hover {
+    border-color: #aaa;
+}
+
+input[type="submit"] {
+    background-color: #2e3a2e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #2e3a2e;
+}
+
+.flash {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: darkolivegreen;
+    font-weight: bold;
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+        padding-bottom: 1em;
+    }
+
+    .subheading {
+        font-size: 1rem;
+    }
+}

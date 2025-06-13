@@ -21,10 +21,12 @@ credentials = service_account.Credentials.from_service_account_file(
 )
 drive_service = build('drive', 'v3', credentials=credentials)
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov', 'avi', 'mkv'}
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 def try_remove_file(path, retries=5, delay=0.2):
     for _ in range(retries):
@@ -34,6 +36,7 @@ def try_remove_file(path, retries=5, delay=0.2):
         except (PermissionError, OSError):
             time.sleep(delay)
     return False
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -48,7 +51,7 @@ def index():
             return redirect(request.url)
 
         for file in files:
-            if file and allowed_file(file.filename) and file.content_type.startswith('image/'):
+            if file and allowed_file(file.filename) and (file.content_type.startswith('image/') or file.content_type.startswith('video/')):
                 filename = secure_filename(file.filename)
                 filepath = os.path.join(UPLOAD_FOLDER, filename)
                 file.save(filepath)
@@ -72,6 +75,7 @@ def index():
         return redirect('/')
 
     return render_template('index.html')
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
